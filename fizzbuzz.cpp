@@ -1,18 +1,12 @@
 #include <iostream>
 #include <vector>
-using std::cout;
-using std::cin;
-using std::endl;
-using std::vector;
-using std::string;
-using std::to_string;
 
 int main() {
-  vector<string> words {"fizz", "buzz"}; //vector of strings
-  vector<int> numbers = {3, 5}; //vector of numbers, should all be prime
+  std::vector<std::string> words {"fizz", "buzz"}; //vector of strings
+  std::vector<int> numbers = {3, 5}; //vector of numbers, should all be prime
   int counter = 1;
   int range = 1;
-  string output = "";
+  std::string output = "";
 
   //Calculate lcm of numbers in numbers
   for(int x : numbers) {
@@ -30,11 +24,11 @@ int main() {
 
     //Concat the number if it is not a multiple of any numbers in numbers
     if(output == "") {
-      output += to_string(counter);
+      output += std::to_string(counter);
     }
 
     //Output result
-    cout << output << endl;
+    std::cout << output << std::endl;
     output = "";
   }
 }
