@@ -8,7 +8,7 @@ int main() {
   int range = 1;
   std::string output = "";
 
-  //Calculate lcm of numbers in numbers
+  //Calculate range for loop
   for(int x : numbers) {
     range *= x;
   }
