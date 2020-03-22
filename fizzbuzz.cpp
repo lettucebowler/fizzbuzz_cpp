@@ -25,7 +25,6 @@ std::string prepOutput(std::vector<int> numbers, std::vector<std::string> words,
         output += words[i];
       }
     }
-    //Concat the number if it is not a multiple of any numbers in numbers
     if(output == "") {
       output += std::to_string(n);
     }
@@ -33,12 +32,11 @@ std::string prepOutput(std::vector<int> numbers, std::vector<std::string> words,
 }
 
 int main() {
-  std::vector<std::string> words {"fizz", "buzz"}; //vector of strings
-  std::vector<int> numbers = {3, 5}; //vector of numbers, should all be prime
+  std::vector<std::string> words {"fizz", "buzz"};
+  std::vector<int> numbers = {3, 5}; //Works best if all are prime, don't have to be though
   int range = findlcm(numbers, numbers.size());
 
   if (words.size() == numbers.size()) {
-    //Main loop
     for(int counter = 1; counter <= range; counter++) {
       std::cout << prepOutput(numbers, words, counter) << std::endl;
     }
