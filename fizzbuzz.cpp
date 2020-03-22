@@ -35,12 +35,14 @@ std::string prepOutput(std::vector<int> numbers, std::vector<std::string> words,
 int main() {
   std::vector<std::string> words {"fizz", "buzz"}; //vector of strings
   std::vector<int> numbers = {3, 5}; //vector of numbers, should all be prime
-  int counter = 1;
   int range = findlcm(numbers, numbers.size());
-  std::string output = "";
 
-  //Main loop
-  for(counter = 1; counter <= range; counter++) {
-    std::cout << prepOutput(numbers, words, counter) << std::endl;
+  if (words.size() == numbers.size()) {
+    //Main loop
+    for(int counter = 1; counter <= range; counter++) {
+      std::cout << prepOutput(numbers, words, counter) << std::endl;
+    }
+  } else {
+    std::cout << "wordlist and numList not equal length" << std::endl;
   }
 }
