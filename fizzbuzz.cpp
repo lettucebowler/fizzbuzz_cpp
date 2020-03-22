@@ -1,17 +1,29 @@
 #include <iostream>
 #include <vector>
+#include <math.h>
+
+typedef long long int ll; 
+
+int gcd(int a, int b) { 
+    if (b == 0) 
+        return a; 
+    return gcd(b, a % b); 
+} 
+
+ll findlcm(std::vector<int> arr, int n) { 
+    ll ans = arr[0]; 
+    for (int i = 1; i < n; i++) 
+        ans = (((arr[i] * ans)) / 
+                (gcd(arr[i], ans))); 
+    return ans; 
+} 
 
 int main() {
   std::vector<std::string> words {"fizz", "buzz"}; //vector of strings
   std::vector<int> numbers = {3, 5}; //vector of numbers, should all be prime
   int counter = 1;
-  int range = 1;
+  int range = findlcm(numbers, numbers.size());
   std::string output = "";
-
-  //Calculate range for loop
-  for(int x : numbers) {
-    range *= x;
-  }
 
   //Main loop
   for(counter = 1; counter <= range; counter++) {
