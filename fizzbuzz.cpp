@@ -1,10 +1,11 @@
 #include <iostream>
 #include <vector>
 #include <math.h>
+#include <map>
 
 typedef long long int ll; 
 
-int gcd(int a, int b) { 
+ll gcd(int a, int b) { 
     if (b == 0) 
         return a; 
     return gcd(b, a % b); 
@@ -16,31 +17,43 @@ ll find_lcm(std::vector<int> arr, int n) {
         ans = (((arr[i] * ans)) / 
                 (gcd(arr[i], ans))); 
     return ans; 
-} 
+}
 
-std::string prep_output(std::vector<int> numbers, std::vector<std::string> words, int n) {
+std::vector<int> get_keys(std::map<int, std::string> map) {
+  std::vector<int> keys;
+  std::map<int, std::string>::iterator it = map.begin();
+  
+  while(it != map.end()) {
+    keys.push_back(it->first);
+    it++;
+  }
+
+  return keys;
+}
+
+std::string prep_output(std::map<int, std::string> words, int n) {
   std::string output = "";
-  for(int i = 0; i < numbers.size(); i++) {
-      if(n % numbers[i] == 0) {
-        output += words[i];
-      }
+  std::map<int, std::string>::iterator it = words.begin();
+  
+  while(it != words.end()) {
+    if(n % it -> first == 0) {
+      output += it -> second;
     }
-    if(output == "") {
-      output += std::to_string(n);
-    }
-    return output;
+    it++;
+  }
+
+  if(output == ""){ 
+    output = std::to_string(n);
+  }
+
+  return output;
 }
 
 int main() {
-  std::vector<std::string> words {"fizz", "buzz", "fuzz"};
-  std::vector<int> numbers = {3, 5, 7}; //Works best if all are prime, don't have to be though
-  int range = find_lcm(numbers, numbers.size());
+  std::map<int, std::string> words = {{3, "Fizz"}, {5, "Buzz"}};
+  int range = find_lcm(get_keys(words), words.size());
 
-  if (words.size() == numbers.size()) {
-    for(int counter = 1; counter <= range; counter++) {
-      std::cout << prep_output(numbers, words, counter) << std::endl;
-    }
-  } else {
-    std::cout << "wordlist and numList not equal length" << std::endl;
+  for(int counter = 1; counter <= range; counter++) {
+    std::cout << prep_output(words, counter) << std::endl;
   }
 }
