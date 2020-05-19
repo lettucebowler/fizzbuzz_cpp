@@ -20,6 +20,7 @@ ll find_lcm(std::vector<int> arr) {
     return ans; 
 }
 
+// Returns a vector of the keys in a map
 std::vector<int> get_keys(std::map<int, std::string> map) {
   std::vector<int> keys;
   std::map<int, std::string>::iterator it = map.begin();
@@ -32,6 +33,7 @@ std::vector<int> get_keys(std::map<int, std::string> map) {
   return keys;
 }
 
+// Returns proper output based on fizzbuzz rules.
 std::string prep_output(std::map<int, std::string> words, int n) {
   std::string output = "";
   std::map<int, std::string>::iterator it = words.begin();
@@ -50,6 +52,7 @@ std::string prep_output(std::map<int, std::string> words, int n) {
   return output;
 }
 
+// Driver Program
 int main() {
   std::map<int, std::string> words = {{3, "Fizz"}, {5, "Buzz"}};
   int range = find_lcm(get_keys(words));
