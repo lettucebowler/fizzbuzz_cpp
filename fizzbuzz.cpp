@@ -1,19 +1,20 @@
 #include <iostream>
 #include <vector>
-#include <math.h>
 #include <map>
 
 typedef long long int ll; 
 
+// Returns greatest common denominator of a and b
 ll gcd(int a, int b) { 
     if (b == 0) 
         return a; 
     return gcd(b, a % b); 
 } 
 
-ll find_lcm(std::vector<int> arr, int n) { 
+// returns least common multiple of elements in arr
+ll find_lcm(std::vector<int> arr) { 
     ll ans = arr[0]; 
-    for (int i = 1; i < n; i++) 
+    for (int i = 1; i < arr.size(); i++) 
         ans = (((arr[i] * ans)) / 
                 (gcd(arr[i], ans))); 
     return ans; 
@@ -51,7 +52,7 @@ std::string prep_output(std::map<int, std::string> words, int n) {
 
 int main() {
   std::map<int, std::string> words = {{3, "Fizz"}, {5, "Buzz"}};
-  int range = find_lcm(get_keys(words), words.size());
+  int range = find_lcm(get_keys(words));
 
   for(int counter = 1; counter <= range; counter++) {
     std::cout << prep_output(words, counter) << std::endl;
